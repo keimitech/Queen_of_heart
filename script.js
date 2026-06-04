@@ -1,7 +1,7 @@
 
 const photos = [
-  "images/photo1.jpg",
-  "images/photo2.jpg",
+  "https://share.google/0M2FVbdLOdvrFkj6H",
+  "https://share.google/HGkg6xXYkbSFwnJTO",
   "images/photo3.jpg"
 ];
 
