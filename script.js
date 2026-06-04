@@ -35,3 +35,6 @@ if ("ProximitySensor" in window) {
 } else {
   console.log("Proximity Sensor API not supported.");
 }
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js');
+}
