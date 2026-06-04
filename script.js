@@ -1,7 +1,7 @@
 
 const photos = [
-  "images/photo1.jpg",
-  "imagse/photo2.jpg",
+  "photo1.jpg",
+  "photo2.jpg",
   "images/photo3.jpg"
 ];
 
