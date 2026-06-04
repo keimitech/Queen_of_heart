@@ -1,0 +1,57 @@
+public class MainActivity extends AppCompatActivity
+        implements SensorEventListener {
+
+    private SensorManager sensorManager;
+    private Sensor proximitySensor;
+    private ImageView imageView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        imageView = findViewById(R.id.imageView);
+
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        proximitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+
+        if (proximitySensor == null) {
+            Toast.makeText(this,
+                    "No proximity sensor found",
+                    Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (proximitySensor != null) {
+            sensorManager.registerListener(
+                    this,
+                    proximitySensor,
+                    SensorManager.SENSOR_DELAY_NORMAL
+            );
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        sensorManager.unregisterListener(this);
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        float distance = event.values[0];
+
+        if (distance < proximitySensor.getMaximumRange()) {
+            imageView.setImageResource(R.drawable.image2);
+        } else {
+            imageView.setImageResource(R.drawable.image1);
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+    }
+}
